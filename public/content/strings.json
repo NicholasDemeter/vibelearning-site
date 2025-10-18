@@ -1,0 +1,99 @@
+{
+  "nav.products": "Products",
+  "nav.philosophy": "Philosophy",
+  "nav.innovation": "Innovation", 
+  "nav.community": "Community",
+  "nav.admin": "Admin",
+  "nav.getStarted": "Get Started",
+  "nav.houseOfVibe": "House of Vibe",
+
+  "hero.headline": "Learning Reimagined",
+  "hero.subcopy": "Where transparency meets curiosity. Beautiful, sustainable technology that makes education empowering and enduring.",
+  
+  "about.background.title": "Our Background",
+  "about.background.text": "VIBE_LEARN was born from a simple but powerful idea — that learning can be alive. We bring together design, psychology, and technology to help educators and leaders think critically, adapt creatively, and collaborate with purpose.",
+  "about.mission.title": "Our Mission",
+  "about.mission.text": "To energize education through adaptive, social, and joyful learning. VIBE_LEARN helps every learner light up — powered by curiosity, guided by trust, and sustained by the spark of understanding.",
+  "about.vision.title": "Our Vision",
+  "about.vision.text": "We envision a world where critical thinking is instinctive — where learning flows like energy across people and systems. Our mission isn't to fill minds but to electrify them.",
+  "hero.exploreProducts": "Explore Products",
+  "hero.watchPhilosophy": "Watch Philosophy",
+
+  "hero.traits": {
+    "transparent": "Transparent",
+    "joyful": "Joyful", 
+    "minimalist": "Minimalist",
+    "humanCentric": "Human-Centric",
+    "timeless": "Timeless"
+  },
+
+  "philosophy.header": "Design Philosophy",
+  "philosophy.subcopy": "A fusion of iconic design traditions creating a unique identity for education technology",
+  "philosophy.transparency.title": "Transparency & Fun",
+  "philosophy.transparency.description": "Inspired by Nothing's playful transparency, we make learning tools open, joyful, and curiosity-sparking.",
+  "philosophy.simplicity.title": "Simplicity & Clarity",
+  "philosophy.simplicity.description": "Rooted in Apple minimalism and Muji's embrace of space, our products are uncluttered, intuitive, and purposeful.",
+  "philosophy.comfort.title": "Comfort & Nature", 
+  "philosophy.comfort.description": "Scandinavian values of hygge and lagom bring warmth, balance, and human-centric calm into every design.",
+  "philosophy.form.title": "Form Meets Function",
+  "philosophy.form.description": "Borrowing from Jony Ive and Jil Sander, design is elegant, tactile, and meaningful—every detail serving a purpose.",
+  "philosophy.timeless.title": "Timeless Principles",
+  "philosophy.timeless.description": "Guided by Dieter Rams' good design ethos, we build innovative, honest, and lasting tools that resist trends.",
+
+  "products.header": "Product Repository",
+  "products.subcopy": "Tools and frameworks built on Vibe Learning principles. Each product embodies transparency, simplicity, and human-centric design.",
+  "products.keyFeatures": "Key Features:",
+  "products.explore": "Explore",
+
+  "products.vibeCanvas.name": "VibeCanvas",
+  "products.vibeCanvas.tagline": "Interactive Learning Spaces",
+  "products.vibeCanvas.description": "Collaborative digital whiteboards designed with transparency and simplicity. Create, share, and learn together in beautiful, intuitive environments.",
+
+  "products.flowLearn.name": "FlowLearn", 
+  "products.flowLearn.tagline": "Adaptive Learning Paths",
+  "products.flowLearn.description": "AI-powered learning journeys that adapt to individual pace and style. Built with Scandinavian comfort principles for stress-free education.",
+
+  "products.communityHub.name": "CommunityHub",
+  "products.communityHub.tagline": "Connected Learning Networks", 
+  "products.communityHub.description": "Foster meaningful connections between learners and educators. Transparent, human-centric design that prioritizes authentic relationships.",
+
+  "products.knowledgeVault.name": "KnowledgeVault",
+  "products.knowledgeVault.tagline": "Timeless Resource Library",
+  "products.knowledgeVault.description": "A beautifully organized repository of educational resources. Clean, searchable, and designed to resist trends while remaining forever useful.",
+
+  "innovation.header": "Innovation &",
+  "innovation.headerGradient": "Sustainability", 
+  "innovation.subcopy": "We prioritize eco-materials and circular design thinking. Our technology is built to be beautiful, empowering, and enduring—resisting obsolescence and waste.",
+  "innovation.learnImpact": "Learn About Our Impact",
+  "innovation.circular.title": "Circular Design",
+  "innovation.circular.description": "Every product is designed for longevity, repairability, and eventual renewal—minimizing waste and maximizing value.",
+  "innovation.ecoMaterials.title": "Eco-Materials",
+  "innovation.ecoMaterials.description": "We choose materials and processes that respect our planet while delivering exceptional user experiences.",
+  "innovation.futureForward.title": "Future-Forward Thinking",
+  "innovation.futureForward.description": "Innovation that anticipates tomorrow's needs while solving today's challenges with timeless design principles.",
+
+  "cta.header": "Join the Learning Revolution", 
+  "cta.subcopy": "Be part of a community that values transparency, sustainability, and beautiful technology that empowers human potential.",
+  "cta.joinCommunity": "Join Community",
+  "cta.exploreOpenSource": "Explore Open Source",
+  "cta.connectWithUs": "Connect with us",
+
+  "admin.content.title": "Content Management",
+  "admin.content.description": "Edit all visible text content throughout the site",
+  "admin.content.search": "Search content...",
+  "admin.content.exportJson": "Export JSON",
+  "admin.content.importJson": "Import JSON", 
+  "admin.content.copyJson": "Copy JSON to Clipboard",
+  "admin.content.save": "Save",
+  "admin.content.cancel": "Cancel",
+
+  "admin.export.title": "Export Tools",
+  "admin.export.description": "Download the current stack or admin dashboard",
+  "admin.export.downloadStack": "Download Current Stack",
+  "admin.export.downloadAdmin": "Download Admin Only",
+  "admin.export.stackDescription": "Complete project with landing page and admin dashboard",
+  "admin.export.adminDescription": "Admin dashboard only for standalone deployment",
+
+  "community.header": "Learning Community",
+  "community.subcopy": "Discover external learning resources, connect with educators, and explore opportunities to earn while you learn."
+}

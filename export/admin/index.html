@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HTML Tool Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+<body>
+    <div id="app" class="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
+        <!-- Loading Screen -->
+        <div id="loading" class="flex items-center justify-center min-h-screen">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                <p class="text-muted-foreground">Loading Admin Dashboard...</p>
+            </div>
+        </div>
+
+        <!-- Main App -->
+        <div id="main-app" class="hidden">
+            <div class="container mx-auto px-4 py-8">
+                <!-- Header -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h1 id="dashboard-title" class="text-4xl font-bold tracking-tight">Admin Dashboard</h1>
+                            <p id="dashboard-subtitle" class="text-muted-foreground mt-2">HTML Tool Management System</p>
+                        </div>
+                        <div class="px-3 py-1 bg-secondary/20 border border-border rounded-lg">
+                            <span class="text-sm text-foreground">Admin Access</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <div class="w-full mb-8">
+                    <div id="tab-list" class="grid w-full grid-cols-4 bg-muted p-1 rounded-lg">
+                        <button class="tab-btn active" data-tab="dashboard">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 1.79 4 4 4h8c0-1.1.9-2 2-2V7H4z"/>
+                            </svg>
+                            Dashboard
+                        </button>
+                        <button class="tab-btn" data-tab="upload">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            </svg>
+                            Upload Tools
+                        </button>
+                        <button class="tab-btn" data-tab="content">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                            Edit Text
+                        </button>
+                        <button class="tab-btn" data-tab="settings">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            Settings
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="mt-8">
+                        <!-- Dashboard Tab -->
+                        <div id="tab-dashboard" class="tab-content active">
+                            <div class="bg-card border border-border rounded-lg">
+                                <div class="p-6 border-b border-border">
+                                    <h3 class="text-xl font-semibold">Tool Management</h3>
+                                    <p class="text-muted-foreground mt-1">Manage uploaded tools, view status, and configure settings</p>
+                                </div>
+                                <div class="p-6">
+                                    <div id="tools-list" class="space-y-4">
+                                        <div class="text-center py-8 text-muted-foreground">
+                                            <p>No tools uploaded yet</p>
+                                            <p class="text-sm mt-1">Upload your first tool using the Upload Tools tab</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upload Tab -->
+                        <div id="tab-upload" class="tab-content">
+                            <div class="bg-card border border-border rounded-lg">
+                                <div class="p-6 border-b border-border">
+                                    <h3 id="upload-title" class="text-xl font-semibold flex items-center gap-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                        </svg>
+                                        Upload HTML Tool
+                                    </h3>
+                                    <p id="upload-description" class="text-muted-foreground mt-1">Upload and manage HTML-based tools for the knowledge repository</p>
+                                </div>
+                                <div class="p-6 space-y-6">
+                                    <!-- File Upload Zone -->
+                                    <div id="dropzone" class="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center cursor-pointer transition-colors hover:border-primary/50">
+                                        <div class="flex flex-col items-center gap-4">
+                                            <div class="p-4 rounded-full bg-primary/10">
+                                                <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p id="dropzone-title" class="text-lg font-medium">Drag & drop HTML or ZIP file here</p>
+                                                <p id="dropzone-subtitle" class="text-muted-foreground">or click to browse files</p>
+                                                <p id="size-limits" class="text-sm text-muted-foreground mt-2">HTML files (max 5MB) or ZIP files (max 10MB)</p>
+                                                <p id="zip-requirements" class="text-xs text-muted-foreground mt-1">ZIP files must contain index.html and optional styles.css, script.js, config.json</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="file-input" accept=".html,.zip" style="display: none;">
+
+                                    <!-- File Info -->
+                                    <div id="file-info" class="hidden bg-muted/50 border border-border rounded-lg p-4">
+                                        <div class="flex items-center gap-3">
+                                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                            </svg>
+                                            <div class="flex-1">
+                                                <p id="file-name" class="font-medium"></p>
+                                                <p id="file-size" class="text-sm text-muted-foreground"></p>
+                                            </div>
+                                            <div class="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs font-medium">
+                                                Valid File
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Metadata Form -->
+                                    <div id="metadata-form" class="hidden space-y-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div class="space-y-2">
+                                                <label class="text-sm font-medium">Tool Name *</label>
+                                                <input id="tool-name" type="text" class="w-full px-3 py-2 bg-background border border-input rounded-md text-sm" placeholder="Enter tool display name">
+                                            </div>
+                                            <div class="space-y-2">
+                                                <label class="text-sm font-medium">Category *</label>
+                                                <select id="tool-category" class="w-full px-3 py-2 bg-background border border-input rounded-md text-sm">
+                                                    <option value="">Select category</option>
+                                                    <option value="productivity">Productivity</option>
+                                                    <option value="education">Education</option>
+                                                    <option value="utilities">Utilities</option>
+                                                    <option value="entertainment">Entertainment</option>
+                                                    <option value="development">Development</option>
+                                                    <option value="design">Design</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="space-y-2">
+                                                <label class="text-sm font-medium">Version</label>
+                                                <input id="tool-version" type="text" class="w-full px-3 py-2 bg-background border border-input rounded-md text-sm" value="1.0.0">
+                                            </div>
+                                            <div class="space-y-2 md:col-span-2">
+                                                <label class="text-sm font-medium">Description</label>
+                                                <textarea id="tool-description" class="w-full px-3 py-2 bg-background border border-input rounded-md text-sm" rows="3" placeholder="Brief description of the tool's functionality"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- Actions -->
+                                        <div class="flex gap-3">
+                                            <button id="preview-btn" class="px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm font-medium hover:bg-secondary/80 transition-colors">
+                                                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                                </svg>
+                                                Preview
+                                            </button>
+                                            <button id="publish-btn" class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
+                                                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                                </svg>
+                                                Publish Tool
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Editor Tab -->
+                        <div id="tab-content" class="tab-content">
+                            <div class="bg-card border border-border rounded-lg">
+                                <div class="p-6 border-b border-border">
+                                    <h3 class="text-xl font-semibold flex items-center gap-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                        Content Editor
+                                    </h3>
+                                    <p class="text-muted-foreground mt-1">Edit text content throughout the admin interface without code changes</p>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <div class="flex items-center gap-4">
+                                            <label class="text-sm font-medium">Filter by category:</label>
+                                            <select id="content-category-filter" class="px-3 py-2 bg-background border border-input rounded-md text-sm">
+                                                <option value="all">All</option>
+                                                <option value="admin">Admin</option>
+                                                <option value="custom">Custom</option>
+                                            </select>
+                                        </div>
+                                        <button id="reset-content-btn" class="px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm font-medium hover:bg-secondary/80 transition-colors">
+                                            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                            </svg>
+                                            Reset to Defaults
+                                        </button>
+                                    </div>
+                                    
+                                    <div id="content-items-list" class="space-y-4">
+                                        <!-- Content items will be populated here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div id="tab-settings" class="tab-content">
+                            <div class="bg-card border border-border rounded-lg">
+                                <div class="p-6 border-b border-border">
+                                    <h3 class="text-xl font-semibold">System Settings</h3>
+                                    <p class="text-muted-foreground mt-1">Configure admin preferences and system settings</p>
+                                </div>
+                                <div class="p-6 space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium">Authentication</h4>
+                                            <p class="text-sm text-muted-foreground">Enable admin authentication (placeholder for future implementation)</p>
+                                        </div>
+                                        <button class="px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm font-medium opacity-50 cursor-not-allowed" disabled>
+                                            Configure Later  
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium">Tool Registry</h4>
+                                            <p class="text-sm text-muted-foreground">Manage tool registry settings and validation</p>
+                                        </div>
+                                        <button id="view-registry-btn" class="px-4 py-2 bg-secondary text-secondary-foreground rounded-md text-sm font-medium hover:bg-secondary/80 transition-colors">
+                                            View Registry
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Modal -->
+        <div id="preview-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div class="bg-card border border-border rounded-lg w-full max-w-4xl max-h-[80vh] m-4">
+                <div class="p-6 border-b border-border flex items-center justify-between">
+                    <h3 class="text-xl font-semibold">Tool Preview</h3>
+                    <button id="close-preview-btn" class="text-muted-foreground hover:text-foreground">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <div class="border rounded-lg p-4 bg-background">
+                        <iframe id="preview-frame" class="w-full h-96 border-0" title="Tool Preview" sandbox="allow-scripts"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="fixed bottom-4 right-4 z-50"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
